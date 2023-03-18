@@ -4,6 +4,7 @@ import com.revature.L2_notebook.NotebookApplication;
 import com.revature.L2_notebook.Model.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
  * TODO: TimeService hasn't been labelled a Component yet, so it can't be injected into the Constructor as a Bean!
  * You will need to add the @Component annotation to TimeService.
  */
+
+
 @Component
 public class NotebookService {
     List<Entry> entries;
@@ -67,5 +70,11 @@ public class NotebookService {
     /**
      * TODO: add the service method necessary for the deletion of a notebook entry by its entryNumber.
      */
+    public Entry deleteEntry(int id) {
+        Entry entry = entries.get(id);
+        entries.remove(entry);
+        return entry;
+    }
+
 
 }

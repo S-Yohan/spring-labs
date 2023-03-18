@@ -38,7 +38,7 @@ public class ShipAspect {
      * @param joinPoint Object representing the position in the code where the Advice has been applied.
      */
     @Before("execution(* com.revature.L5_freight.Service.ShipService.*(..))")
-    public void logBeforeArtistServiceMethods(JoinPoint joinPoint){
+    public void logBeforeShipServiceMethods(JoinPoint joinPoint){
         System.out.println("test1");
         ArtApplication.log.info("aop: log before method execution: "+joinPoint);
     }
@@ -53,7 +53,7 @@ public class ShipAspect {
      * @param joinPoint Object representing the position in the code where the Advice has been applied.
      */
     @After("execution(* com.revature.L5_freight.Service.ShipService.*(..))")
-    public void logAfterArtistServiceMethods(JoinPoint joinPoint){
+    public void logAfterShipServiceMethods(JoinPoint joinPoint){
         System.out.println("test2");
         ArtApplication.log.info("aop: log after method execution: "+joinPoint);
     }
@@ -68,7 +68,7 @@ public class ShipAspect {
      * @param joinPoint Object representing the position in the code where the Advice has been applied.
      */
     @AfterThrowing("execution(* com.revature.L5_freight.Service.ShipService.*(..))")
-    public void logAfterArtistServiceException(JoinPoint joinPoint){
+    public void logAfterShipServiceException(JoinPoint joinPoint){
         ArtApplication.log.warn("aop: exception thrown: "+joinPoint);
     }
     /**

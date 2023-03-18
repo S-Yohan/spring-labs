@@ -86,4 +86,7 @@ public class Application {
     /**
      * TODO: Write the @Bean configuration for Squarer here! Note that a Squarer relies on Multiplier as a dependency.
      */
+    @Bean
+    @Scope("singleton")
+    public Squarer getSquarerBean() {return new Squarer();}
 }

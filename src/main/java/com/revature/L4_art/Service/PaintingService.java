@@ -7,6 +7,7 @@ import com.revature.L4_art.Repository.ArtistRepository;
 import com.revature.L4_art.Repository.PaintingRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +54,8 @@ public class PaintingService {
      * @return a list of all Painting entities
      */
     public List<Painting> getAllPaintings(){
-        return null;
+        List<Painting> allPaintings = paintingRepository.findAll();
+        return allPaintings;
     }
     /**
      * TODO Problem 2: Write a query method in Spring Data JPARepository to retrieve all Paintings by their genre.
@@ -61,7 +63,7 @@ public class PaintingService {
      * @return a list of all Painting entities with a particular genre.
      */
     public List<Painting> getAllPaintingsByGenre(String genre){
-        return null;
+        return paintingRepository.findPaintingsByGenre(genre);
     }
     /**
      * TODO Problem 3: Write a query method in Spring Data JPARepository to retrieve all Paintings by their title.
@@ -69,7 +71,7 @@ public class PaintingService {
      * @return a list of all Painting entities with a particular title.
      */
     public List<Painting> getAllPaintingsByTitle(String title){
-        return null;
+        return paintingRepository.findPaintingByTitle(title);
     }
     /**
      * TODO Problem 4: Write a query method in Spring Data JPARepository to retrieve all Paintings by their title & genre.
@@ -78,6 +80,6 @@ public class PaintingService {
      * @return a list of all Painting entities with a particular title & genre.
      */
     public List<Painting> getAllPaintingsByTitleAndGenre(String title, String genre){
-        return null;
+        return paintingRepository.findPaintingByGenreAndTitle(title, genre);
     }
 }

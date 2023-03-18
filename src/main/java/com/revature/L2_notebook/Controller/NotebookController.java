@@ -82,5 +82,8 @@ public class NotebookController {
      * entry 2 by sending a request to DELETE localhost:8080/entries/2. You will also need to write a method to
      * service this request in NotebookService.
      */
+    @RequestMapping(value = "entries/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Entry deleteNotebookEntry(@PathParam("id") int num ) {return notebookService.deleteEntry(num);}
 
 }

@@ -38,14 +38,16 @@ public class PlanService {
      * @return all Plan entities
      */
     public List<Plan> getAllPlan(){
-        return null;
+        List<Plan> allPlans = planRepository.findAll();
+        return allPlans;
     }
     /**
      * TODO: return a plan of a specific ID from the PlanRepository
      * @return the persisted Plan entity of a specific id
      */
     public Plan getPlanById(long id){
-        return null;
+        Plan thePlan = planRepository.getReferenceById(id);
+        return thePlan;
     }
     /**
      * TODO: return the workout entity associated with a certain Plan
@@ -57,13 +59,21 @@ public class PlanService {
      * TODO: delete a plan entity using its ID and return the deleted workout
      */
     public Plan deletePlan(long id){
-        return null;
+        Plan planTobeDeleted;
+        planTobeDeleted = planRepository.getReferenceById(id);
+        if(planTobeDeleted != null){
+            planRepository.deleteById(id);
+        }
+        return planTobeDeleted;
     }
     /**
      * TODO: update a Plan's reps by retrieving the Plan entity with id, and using the reps field in updatedPlan to
      * update the entity.
      */
     public Plan updatePlanReps(long id, Plan updatedPlan){
-        return null;
+        Plan planForUpdate = planRepository.getReferenceById(id);
+        int newRepCount = updatedPlan.getNumberOfReps();
+        planForUpdate.setNumberOfReps(newRepCount);
+        return planForUpdate;
     }
 }

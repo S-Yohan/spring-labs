@@ -5,6 +5,7 @@ import com.revature.L5_freight.Model.Ship;
 import com.revature.L5_freight.Repository.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  * attempting to get all ships. No ships should be POSTed if any ship in the array has a negative or zero
  * tonnage - we're left to assume some form of unwanted user error in that case.
  */
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class ShipService {
     ShipRepository shipRepository;

@@ -1,6 +1,13 @@
 package com.revature.L4_art.Repository;
+import com.revature.L4_art.Model.Artist;
 import com.revature.L4_art.Model.Painting;
+import jakarta.persistence.criteria.From;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
 /**
  * Extending JPARepository<Entity class, ID datatype> grants this class the functionality of a JPARepository:
  * this means that this class will be capable of treating the provided entity as an ORM object.
@@ -21,18 +28,28 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PaintingRepository extends JpaRepository<Painting, Long> {
 
+
     /**
      * TODO Problem 1: Retrieve Painting entities with a particular genre.
      * (You will need to leverage either @Query annotation or a JPA query method)
      */
+    @Query("FROM Painting WHERE genre = :genre")
+    List<Painting> findPaintingsByGenre(@Param("genre") String genre);
+
 
     /**
      * TODO Problem 2: Retrieve Painting entities with a particular title.
      * (You will need to leverage either @Query annotation or a JPA query method)
      */
 
+    @Query("FROM Painting WHERE title = :title")
+    List<Painting> findPaintingByTitle(@Param("title") String title);
+
     /**
      * TODO Problem 3: Retrieve Painting entities with a particular title AND genre.
      * (You will need to leverage either @Query annotation or a JPA query method)
      */
+    @Query("FROM Painting WHERE title = :title AND  genre = :genre")
+    List<Painting> findPaintingByGenreAndTitle(@Param("title")String title, @Param("genre") String genre);
+
 }

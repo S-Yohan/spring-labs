@@ -2,11 +2,13 @@ package com.revature.L4_art.Controller;
 
 import com.revature.L4_art.Model.Painting;
 import com.revature.L4_art.Service.PaintingService;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * The @Controller annotation is a stereotype annotation introduced by Spring MVC (model/view/controller), which
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * also includes the behavior of @ResponseBody, which automatically converts the Objects that are returned by the
  * endpoint methods into JSON response bodies.
  */
+
 @RestController
 public class PaintingController {
     /**
@@ -61,6 +64,11 @@ public class PaintingController {
      *  {"title":"blue", "year":1927, "genre":"abstract"},
      *  {"title":"blue", "year":2023, "genre":"paw prints"}]
      */
+    @GetMapping("painting")
+    public List<Painting> getAllPaintings(){
+        return paintingService.getAllPaintings();
+
+    }
 
     /**
      * TODO Problem 3: write an endpoint on GET localhost:9000/painting?title={title} to retrieve all paintings with
@@ -68,6 +76,10 @@ public class PaintingController {
      * [{"title":"blue", "year":1927, "genre":"abstract"},
      *  {"title":"blue", "year":2023, "genre":"paw prints"}]
      */
+    @GetMapping(value = "painting", params = {"title"})
+    public List<Painting> getPaintingsByTitle(@RequestParam ("title") String title){
+        return paintingService.getAllPaintingsByTitle(title);
+    }
 
     /**
      * TODO Problem 4: write an endpoint on GET localhost:9000/painting?genre={genre} to retrieve all paintings with
@@ -75,6 +87,10 @@ public class PaintingController {
      * [{"title":"capricious", "year":1930, "genre":"abstract"},
      *  {"title":"blue", "year":1927, "genre":"abstract"}]
      */
+    @GetMapping(value = "painting", params = {"genre"})
+    public List<Painting> getPaintingByGenre(@RequestParam("genre") String genre){
+        return paintingService.getAllPaintingsByGenre(genre);
+    }
 
     /**
      * TODO Problem 5: write an endpoint on GET localhost:9000/painting?genre={genre}&title={title} to retrieve all
@@ -82,4 +98,8 @@ public class PaintingController {
      * could respond with,
      * [{"title":"blue", "year":1927, "genre":"abstract"}]
      */
+    @GetMapping(value = "painting", params = {"title" , "genre"})
+    public List<Painting> getPaintingByGenreAndTitle(@RequestParam("title") String title, @RequestParam("genre") String genre){
+        return paintingService.getAllPaintingsByTitleAndGenre(title, genre);
+    }
 }

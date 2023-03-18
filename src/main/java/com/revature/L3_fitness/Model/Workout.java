@@ -91,7 +91,6 @@ public class Workout {
         return "Workout{" +
                 "id=" + workoutId +
                 ", title='" + title + '\'' +
-                ", plans=" + plans +
                 '}';
     }
 }

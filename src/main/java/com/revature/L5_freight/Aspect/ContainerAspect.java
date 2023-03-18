@@ -1,6 +1,11 @@
 package com.revature.L5_freight.Aspect;
 
+import com.revature.L4_art.ArtApplication;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 /**
@@ -27,5 +32,70 @@ public class ContainerAspect {
      *
      * This task does not have test cases. You should test it manually by using the Freight API once all other parts
      * of the application are complete.
+     */
+
+    /**
+     * This method contains Advice, which is code that is applied as a cross-cutting-concern at a JoinPoint. A
+     * JoinPoint is the actual location in the code where Advice is applied. The @After is an Advice annotation:
+     * it defines where the Advice should be applied. In this case, the println statement is Advice
+     * that is applied after any method in ShipService executes. The expression provided to the After annotation
+     * is a pointcut expression, which defines which methods the Advice is applied to. More on Advice annotations and
+     * Pointcut expressions below.
+     *
+     * @param joinPoint Object representing the position in the code where the Advice has been applied.
+     */
+
+    @Before("execution(* com.revature.L5_freight.Service.ContainerService.*(..))")
+    public void logBeforeContainerServiceMethods(JoinPoint joinPoint){
+        System.out.println("test1");
+        ArtApplication.log.info("aop: log before method execution: "+joinPoint);
+    }
+    /**
+     * This method contains Advice, which is code that is applied as a cross-cutting-concern at a JoinPoint. A
+     * JoinPoint is the actual location in the code where Advice is applied. The @After is an Advice annotation:
+     * it defines where the Advice should be applied. In this case, the println statement is Advice
+     * that is applied after any method in ShipService executes. The expression provided to the After annotation
+     * is a pointcut expression, which defines which methods the Advice is applied to. More on Advice annotations and
+     * Pointcut expressions below.
+     *
+     * @param joinPoint Object representing the position in the code where the Advice has been applied.
+     */
+    @After("execution(* com.revature.L5_freight.Service.ContainerService.*(..))")
+    public void logAfterContainerServiceMethods(JoinPoint joinPoint){
+        System.out.println("test2");
+        ArtApplication.log.info("aop: log after method execution: "+joinPoint);
+    }
+    /**
+     * This method contains Advice, which is code that is applied as a cross-cutting-concern at a JoinPoint. A
+     * JoinPoint is the actual location in the code where Advice is applied. The @After is an Advice annotation:
+     * it defines where the Advice should be applied. In this case, the println statement is Advice
+     * that is applied after any method in ShipService executes. The expression provided to the After annotation
+     * is a pointcut expression, which defines which methods the Advice is applied to. More on Advice annotations and
+     * Pointcut expressions below.
+     *
+     * @param joinPoint Object representing the position in the code where the Advice has been applied.
+     */
+    @AfterThrowing("execution(* com.revature.L5_freight.Service.ContainerService.*(..))")
+    public void logAfterContainerServiceException(JoinPoint joinPoint){
+        ArtApplication.log.warn("aop: exception thrown: "+joinPoint);
+    }
+    /**
+     * Advice:
+     * Advice is code that is applied as a cross-cutting-concern. Advice annotations define where the code is applied
+     * to the methods matching the Pointcut expressions. The Advice annotations that can be used:
+     * @Before - before the execution of the method
+     * @After - after the execution of the method
+     * @AfterReturning - after the method returns (ie completed with no exceptions thrown)
+     * @AfterThrowing - after the method throws an exception
+     * @Around - combination of @Before and @Around
+     */
+
+    /**
+     * Pointcut expressions:
+     * A pattern-matching expression that defines the methods that the Advice should apply to, where * is a single
+     * wild card (eg apply to any class, any method) and .. is any amount of wildcards (eg apply to a method
+     * with any amount of parameters). Pointcut expressions can also be used for pattern matching, for instance,
+     * they could be written to apply Advice to any method whose name begins with "get" or any method that contains
+     * "Painting", etc.
      */
 }

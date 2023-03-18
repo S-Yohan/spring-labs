@@ -1,5 +1,7 @@
 package com.revature.L1_calculator.Components;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * TODO: Modify this class so that it functions as a component within the Spring Framework.
  *
@@ -18,6 +20,7 @@ public class Squarer {
     /**
      * TODO: Autowire this field
      */
+    @Autowired
     Multiplier multiplier;
 
     /**

@@ -1,5 +1,6 @@
 package com.revature.L2_notebook.Service;
 import com.revature.L2_notebook.NotebookApplication;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -9,7 +10,7 @@ import java.util.Date;
  * (inversion-of-control) container.
  * This is a Service class that will be used to obtain the current time for notebook entries.
  */
-
+@Component
 public class TimeService {
 
     public String getCurrentTime(){
